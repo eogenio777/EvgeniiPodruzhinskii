@@ -3,7 +3,6 @@ package com.epam.tc.hw1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import com.epam.tat.module4.Calculator;
 import com.epam.tc.hw1.utils.DataProviderForCalculatorTests;
 import org.testng.annotations.Test;
 
