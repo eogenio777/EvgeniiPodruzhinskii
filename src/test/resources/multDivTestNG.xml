@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="add sub suite" verbose="1">
+  <test name="mult test">
+    <groups>
+      <run>
+        <include name="Multiply Test"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.epam.tc.hw1.CalculatorMultiplyTests"/>
+    </classes>
+  </test>
+  <test name="div test">
+    <groups>
+      <run>
+        <include name="Divide Test"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.epam.tc.hw1.CalculatorDivideTests"/>
+    </classes>
+  </test>
+
+</suite>
+
