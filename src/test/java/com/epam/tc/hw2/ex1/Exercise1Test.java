@@ -1,20 +1,14 @@
 package com.epam.tc.hw2.ex1;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.epam.tc.hw2.BaseExerciseTest;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class Exercise1Test extends BaseExerciseTest {
@@ -92,7 +86,7 @@ public class Exercise1Test extends BaseExerciseTest {
 
         // 8) Assert that there is the iframe with “Frame Button” exist
         WebElement frame = driver.findElement(By.id("frame"));
-        softAssertions.assertThat(frame).isNotNull();
+        softAssertions.assertThat(frame.isDisplayed()).isTrue();
 
         // 9) Switch to the iframe and check that there is “Frame Button” in the iframe
 
@@ -101,7 +95,7 @@ public class Exercise1Test extends BaseExerciseTest {
 
         driver.switchTo().frame("frame");
         WebElement frameButton = driver.findElement(By.id("frame-button"));
-        softAssertions.assertThat(frameButton).isNotNull();
+        softAssertions.assertThat(frameButton.isDisplayed()).isTrue();
 
         // 10) Switch to original window back
         driver.switchTo().window(windowHandle);
@@ -123,9 +117,12 @@ public class Exercise1Test extends BaseExerciseTest {
         actualItems.forEach(element -> softAssertions.assertThat(element.isDisplayed()).isTrue());
 
         // assert texts
-        List<WebElement> actualItemsTexts = new ArrayList<>(actualItems);
+        List<String> actualItemsTexts = new ArrayList<>();
+        actualItems.forEach(item -> {
+            actualItemsTexts.add(item.getText());
+        });
         for (int i = 0; i < actualItemsTexts.size(); ++i) {
-            softAssertions.assertThat(actualItemsTexts.get(i).getText()).isEqualTo(expectedTexts[i]);
+            softAssertions.assertThat(actualItemsTexts.get(i)).isEqualTo(expectedTexts[i]);
         }
     }
 }

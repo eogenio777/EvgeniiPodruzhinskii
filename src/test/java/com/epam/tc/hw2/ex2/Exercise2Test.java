@@ -118,7 +118,5 @@ public class Exercise2Test extends BaseExerciseTest {
             }
         }
         assertThat(dropdownNoticed).isTrue();
-
-
     }
 }
