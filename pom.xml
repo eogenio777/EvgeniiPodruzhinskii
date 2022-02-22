@@ -9,32 +9,51 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <checkstyle.version>9.2.1</checkstyle.version>
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     <testng.version>7.4.0</testng.version>
     <testng.configs.path>${project.build.testOutputDirectory}</testng.configs.path>
+    <selenium-java.version>4.1.1</selenium-java.version>
+    <assertj-core.version>3.22.0</assertj-core.version>
+    <webdrivermanager.version>5.1.0</webdrivermanager.version>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <calculator.version>1.0</calculator.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium-java.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj-core.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.epam.calc</groupId>
       <artifactId>calculator</artifactId>
-      <version>1.0</version>
+      <version>${calculator.version}</version>
       <scope>system</scope>
       <systemPath>${pom.basedir}/calculator-1.0.jar</systemPath>
     </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.22.0</version>
-      <scope>test</scope>
-    </dependency>
+
   </dependencies>
 
   <build>
@@ -42,17 +61,17 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
-          <source>11</source>
-          <target>11</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
@@ -73,7 +92,6 @@
         </dependencies>
         <configuration>
           <configLocation>
-            <!--  pay attention to use exact url for checkstyle plugin ruleset  -->
             https://raw.githubusercontent.com/DmitryKhodakovsky/epam-training-center-code-checkers-configurations/main/checkstyle/checkstyle.xml
           </configLocation>
           <encoding>${project.build.sourceEncoding}</encoding>
@@ -96,6 +114,12 @@
   </build>
 
   <profiles>
+    <profile>
+      <id>hw2</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/hw2TestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
     <profile>
       <id>addSubTests</id>
       <activation>
