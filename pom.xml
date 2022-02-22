@@ -20,6 +20,8 @@
     <assertj-core.version>3.22.0</assertj-core.version>
     <webdrivermanager.version>5.1.0</webdrivermanager.version>
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <calculator.version>1.0</calculator.version>
   </properties>
 
   <dependencies>
@@ -44,6 +46,14 @@
       <artifactId>webdrivermanager</artifactId>
       <version>${webdrivermanager.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.epam.calc</groupId>
+      <artifactId>calculator</artifactId>
+      <version>${calculator.version}</version>
+      <scope>system</scope>
+      <systemPath>${pom.basedir}/calculator-1.0.jar</systemPath>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -57,6 +67,18 @@
           <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -96,6 +118,27 @@
       <id>hw2</id>
       <properties>
         <testng.suite.file>${testng.configs.path}/hw2TestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>addSubTests</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/addSubTestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>multDivTests</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/multDivTestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>allTests</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/everythingTestNG.xml</testng.suite.file>
       </properties>
     </profile>
   </profiles>
