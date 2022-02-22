@@ -19,6 +19,13 @@ import org.testng.annotations.Test;
 
 public class Exercise1Test extends BaseExerciseTest {
 
+    private final String[] expectedNavBarTitles =
+        new String[] {
+            "HOME",
+            "CONTACT FORM",
+            "SERVICE",
+            "METALS & COLORS"};
+
     private final String[] expectedTextsUnderIcons =
         new String[] {
             "To include good practices\nand ideas from successful\nEPAM project",
@@ -33,22 +40,6 @@ public class Exercise1Test extends BaseExerciseTest {
             "Service",
             "Metals & Colors",
             "Elements packs"};
-
-    @BeforeMethod
-    public void setUp() {
-        // set up the chrome driver
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-
-        // maximize the window
-        driver.manage().window().maximize();
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        //close all tabs and processes
-        driver.quit();
-    }
 
     @Test
     public void testLoginAndGeneralHomePageElements() {
@@ -85,21 +76,8 @@ public class Exercise1Test extends BaseExerciseTest {
 
         // 5) Assert that there are 4 items on the header -------------------------------------
         // section are displayed and they have proper texts
-        WebElement home = driver.findElement(By.cssSelector("header a[href=\"index.html\"]"));
-        softAssertions.assertThat(home.isDisplayed()).isTrue();
-        softAssertions.assertThat(home.getText()).isEqualTo("HOME");
-
-        WebElement contactForm = driver.findElement(By.cssSelector("header a[href=\"contacts.html\"]"));
-        softAssertions.assertThat(contactForm.isDisplayed()).isTrue();
-        softAssertions.assertThat(contactForm.getText()).isEqualTo("CONTACT FORM");
-
-        WebElement service = driver.findElement(By.cssSelector("header a.dropdown-toggle"));
-        softAssertions.assertThat(service.isDisplayed()).isTrue();
-        softAssertions.assertThat(service.getText()).isEqualTo("SERVICE");
-
-        WebElement metalAndColors = driver.findElement(By.cssSelector("header a[href=\"metals-colors.html\"]"));
-        softAssertions.assertThat(metalAndColors.isDisplayed()).isTrue();
-        softAssertions.assertThat(metalAndColors.getText()).isEqualTo("METALS & COLORS");
+        List<WebElement> navBarItems = driver.findElements(By.xpath("//nav/ul/li/a[not(@href='#')]"));
+        assertItemsCountPlacementAndTexts(navBarItems, 4, expectedNavBarTitles, softAssertions);
 
         // 6) Assert that there are 4 images on the
         // Index Page and they are displayed
@@ -110,13 +88,7 @@ public class Exercise1Test extends BaseExerciseTest {
         // 7) Assert that there are 4 texts on the
         // Index Page under icons and they have proper text
         List<WebElement> textsUnderImages = driver.findElements(By.className("benefit-txt"));
-        softAssertions.assertThat(textsUnderImages.size()).isEqualTo(4);
-        textsUnderImages.forEach(element -> softAssertions.assertThat(element.isDisplayed()).isTrue());
-
-        List<WebElement> actualTexts = new ArrayList<>(textsUnderImages);
-        for (int i = 0; i < actualTexts.size(); ++i) {
-            softAssertions.assertThat(actualTexts.get(i).getText()).isEqualTo(expectedTextsUnderIcons[i]);
-        }
+        assertItemsCountPlacementAndTexts(textsUnderImages, 4, expectedTextsUnderIcons, softAssertions);
 
         // 8) Assert that there is the iframe with “Frame Button” exist
         WebElement frame = driver.findElement(By.id("frame"));
@@ -137,15 +109,23 @@ public class Exercise1Test extends BaseExerciseTest {
         // 11) Assert that there are 5 items in the Left Section
         // are displayed and they have proper text
         List<WebElement> actualLeftItems = driver.findElements(By.cssSelector(".wrapper ul.left >li > a > span"));
-        softAssertions.assertThat(actualLeftItems.size()).isEqualTo(5);
-        textsUnderImages.forEach(element -> softAssertions.assertThat(element.isDisplayed()).isTrue());
-
-        List<WebElement> actualLeftTexts = new ArrayList<>(actualLeftItems);
-        for (int i = 0; i < actualLeftTexts.size(); ++i) {
-            softAssertions.assertThat(actualLeftTexts.get(i).getText()).isEqualTo(expectedMenuTitles[i]);
-        }
-
+        assertItemsCountPlacementAndTexts(actualLeftItems, 5, expectedMenuTitles, softAssertions);
 
         softAssertions.assertAll();
+    }
+
+    public void assertItemsCountPlacementAndTexts(List<WebElement> actualItems, int expectedCount,
+                                                  String[] expectedTexts, SoftAssertions softAssertions) {
+        // assert count
+        softAssertions.assertThat(actualItems.size()).isEqualTo(expectedCount);
+
+        // assert placement
+        actualItems.forEach(element -> softAssertions.assertThat(element.isDisplayed()).isTrue());
+
+        // assert texts
+        List<WebElement> actualItemsTexts = new ArrayList<>(actualItems);
+        for (int i = 0; i < actualItemsTexts.size(); ++i) {
+            softAssertions.assertThat(actualItemsTexts.get(i).getText()).isEqualTo(expectedTexts[i]);
+        }
     }
 }
