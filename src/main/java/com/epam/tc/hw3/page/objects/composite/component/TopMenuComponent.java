@@ -12,6 +12,12 @@ public class TopMenuComponent extends AbstractJdiBaseComponent {
     @FindBy(xpath = "//nav/ul/li/a[not(@href='#')]")
     private List<WebElement> navMenu;
 
+    @FindBy(css = "li.dropdown > a.dropdown-toggle")
+    private WebElement serviceDropdown;
+
+    @FindBy(css = "ul.dropdown-menu a[href=\"different-elements.html\"]")
+    private WebElement differentElementsButton;
+
     @FindBy(id = "user-icon")
     private WebElement loginForm;
 
@@ -61,5 +67,14 @@ public class TopMenuComponent extends AbstractJdiBaseComponent {
     public String getUserNameInfo() {
         // wait until the username is no more hidden
         return wait.until(ExpectedConditions.visibilityOf(userNameInfo)).getText();
+    }
+
+    public void clickServiceDropdown() {
+        serviceDropdown.click();
+    }
+
+    public void clickDifferentElementsButton() {
+        wait.until(ExpectedConditions.visibilityOf(differentElementsButton));
+        differentElementsButton.click();
     }
 }

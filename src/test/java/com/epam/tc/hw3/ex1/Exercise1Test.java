@@ -3,29 +3,24 @@ package com.epam.tc.hw3.ex1;
 import com.epam.tc.hw2.BaseExerciseTest;
 import com.epam.tc.hw3.page.objects.composite.HomePage;
 import com.epam.tc.hw3.page.objects.composite.component.FrameComponent;
+import com.epam.tc.hw3.utils.DataProviderForHW3;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class Exercise1Test extends BaseExerciseTest {
 
-    private final String[] expectedNavBarTitles = new String[] {"HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"};
-
-    private final String[] expectedTextsUnderIcons =
-        new String[] {"To include good practices\nand ideas from successful\nEPAM project",
-            "To be flexible and\ncustomizable", "To be multiplatform",
-            "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…"};
-
-    private final String[] expectedMenuTitles =
-        new String[] {"Home", "Contact form", "Service", "Metals & Colors", "Elements packs"};
-
-    @Test
-    public void testLoginAndGeneralHomePageElements() {
+    @Test(
+        dataProviderClass = DataProviderForHW3.class,
+        dataProvider = "EX1"
+    )
+    public void testLoginAndGeneralHomePageElements(String title, String[] expectedNavBarTitles,
+                                                    long iconsCount,
+                                                    String[] expectedTextsUnderIcons,
+                                                    String[] expectedMenuTitles) {
         // set up the soft assertions
         SoftAssertions softAssertions = new SoftAssertions();
         FileInputStream fis;
@@ -42,7 +37,7 @@ public class Exercise1Test extends BaseExerciseTest {
             HomePage homePage = new HomePage(driver);
 
             // 2) Assert Browser title
-            softAssertions.assertThat(homePage.getTitle()).isEqualTo("Home Page");
+            softAssertions.assertThat(homePage.getTitle()).isEqualTo(title);
 
             // 3) Perform login
 
@@ -57,16 +52,15 @@ public class Exercise1Test extends BaseExerciseTest {
 
             // 5) Assert that there are 4 items on the header
             // section and they have proper texts
-            softAssertions.assertThat(homePage.topMenu().getNavMenuSize()).isEqualTo(4);
+            softAssertions.assertThat(homePage.topMenu().getNavMenuSize()).isEqualTo(expectedNavBarTitles.length);
             assertItemsTexts(homePage.topMenu().getNavMenuTitles(), expectedNavBarTitles, softAssertions);
 
-
             // 6) Assert that there are 4 images on the Index Page
-            softAssertions.assertThat(homePage.getIconsCount()).isEqualTo(4);
+            softAssertions.assertThat(homePage.getIconsCount()).isEqualTo(iconsCount);
 
             // 7) Assert that there are 4 texts on the
             // Index Page under icons and they have proper text
-            softAssertions.assertThat(homePage.getIconsTextsCount()).isEqualTo(4);
+            softAssertions.assertThat(homePage.getIconsTextsCount()).isEqualTo(expectedTextsUnderIcons.length);
             assertItemsTexts(homePage.getIconsTexts(), expectedTextsUnderIcons, softAssertions);
 
             // 8) Assert that there is the iframe with “Frame Button” exist
@@ -82,9 +76,8 @@ public class Exercise1Test extends BaseExerciseTest {
 
             // 11) Assert that there are 5 items in the Left Section
             // are displayed and they have proper text
-            softAssertions.assertThat(homePage.leftMenu().getNavMenuSize()).isEqualTo(5);
+            softAssertions.assertThat(homePage.leftMenu().getNavMenuSize()).isEqualTo(expectedMenuTitles.length);
             assertItemsTexts(homePage.leftMenu().getNavMenuTitles(), expectedMenuTitles, softAssertions);
-
 
             softAssertions.assertAll();
         } catch (IOException e) {
