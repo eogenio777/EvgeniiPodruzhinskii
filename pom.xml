@@ -115,12 +115,6 @@
 
   <profiles>
     <profile>
-      <id>hw2</id>
-      <properties>
-        <testng.suite.file>${testng.configs.path}/hw2TestNG.xml</testng.suite.file>
-      </properties>
-    </profile>
-    <profile>
       <id>addSubTests</id>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -139,6 +133,18 @@
       <id>allTests</id>
       <properties>
         <testng.suite.file>${testng.configs.path}/everythingTestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>hw2</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/hw2TestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>hw3</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/hw3TestNG.xml</testng.suite.file>
       </properties>
     </profile>
   </profiles>
