@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class FrameComponent extends AbstractJdiBaseComponent {
 
-    @FindBy(xpath = "/html/body/span/div/div/input")
+    @FindBy(id = "frame-button")
     private WebElement frameButton;
 
     public FrameComponent(WebDriver driver) {

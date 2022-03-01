@@ -19,11 +19,12 @@ public class BaseExerciseTestHW3 {
     public void readProps() {
         FileInputStream fis;
         properties = new Properties();
+        String configPath = "src/test/resources/config.properties";
         try {
-            fis = new FileInputStream("src/test/resources/config.properties");
+            fis = new FileInputStream(configPath);
             properties.load(fis);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Property file " + configPath + " is not found", e);
         }
     }
 
