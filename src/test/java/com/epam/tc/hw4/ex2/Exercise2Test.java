@@ -37,10 +37,7 @@ public class Exercise2Test extends BaseExerciseTestHW4 {
         assertThat(homePage.getTitle()).isEqualTo(title);
 
         step("Perform login");
-        homePage.topMenu().clickLoginForm();
-        homePage.topMenu().sendKeysName(properties.getProperty("username"));
-        homePage.topMenu().sendKeysPassword(properties.getProperty("password"));
-        homePage.topMenu().clickLoginButton();
+        homePage.topMenu().performLogin(properties.getProperty("username"), properties.getProperty("password"));
 
         step("Assert User name in the left-top side of screen that user is logged in");
         assertThat(homePage.topMenu().getUserNameInfo())
@@ -64,7 +61,7 @@ public class Exercise2Test extends BaseExerciseTestHW4 {
         differentElementsPage.selectColor(color);
 
         step("Assert that for each checkbox there is an individual log row and value is corresponded "
-                + "to the status of checkbox");
+            + "to the status of checkbox");
         assertThat(differentElementsPage.areCheckBoxesInLogs(checkBoxesTexts)).isTrue();
 
         step("Assert that for radio button there is a log row and value is corresponded to the status"

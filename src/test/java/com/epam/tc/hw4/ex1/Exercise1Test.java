@@ -8,7 +8,6 @@ import com.epam.tc.hw4.BaseExerciseTestHW4;
 import com.epam.tc.hw4.storynames.Tags;
 import com.epam.tc.hw4.utils.DataProviderForHW4;
 import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
@@ -43,15 +42,11 @@ public class Exercise1Test extends BaseExerciseTestHW4 {
         softAssertions.assertThat(homePage.getTitle()).isEqualTo(title);
 
         step("Perform login");
-        homePage.topMenu().clickLoginForm();
-        homePage.topMenu().sendKeysName(properties.getProperty("username"));
-        homePage.topMenu().sendKeysPassword(properties.getProperty("password"));
-        homePage.topMenu().clickLoginButton();
+        homePage.topMenu().performLogin(properties.getProperty("username"), properties.getProperty("password"));
 
         step("Assert Username is logged");
         softAssertions.assertThat(homePage.topMenu().getUserNameInfo())
                       .isEqualTo(properties.getProperty("usernameInfo"));
-
 
         step("Assert that there are 4 items on the header section and they have proper texts");
         softAssertions.assertThat(homePage.topMenu().getNavMenuSize()).isEqualTo(expectedNavBarTitles.length);
@@ -59,7 +54,6 @@ public class Exercise1Test extends BaseExerciseTestHW4 {
 
         step("Assert that there are 4 images on the Index Page");
         softAssertions.assertThat(homePage.getIconsCount()).isEqualTo(iconsCount);
-
 
         step("Assert that there are 4 texts on the Index Page under icons and they have proper text");
         softAssertions.assertThat(homePage.getIconsTextsCount()).isEqualTo(expectedTextsUnderIcons.length);

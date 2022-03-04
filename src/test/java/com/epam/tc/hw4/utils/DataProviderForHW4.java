@@ -2,7 +2,6 @@ package com.epam.tc.hw4.utils;
 
 import java.util.Arrays;
 import java.util.List;
-import lombok.experimental.UtilityClass;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderForHW4 {
