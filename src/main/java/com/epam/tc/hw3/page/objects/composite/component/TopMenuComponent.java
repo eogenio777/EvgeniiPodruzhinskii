@@ -77,4 +77,11 @@ public class TopMenuComponent extends AbstractJdiBaseComponent {
         wait.until(ExpectedConditions.visibilityOf(differentElementsButton));
         differentElementsButton.click();
     }
+
+    public void performLogin(String username, String password) {
+        clickLoginForm();
+        sendKeysName(username);
+        sendKeysPassword(password);
+        clickLoginButton();
+    }
 }

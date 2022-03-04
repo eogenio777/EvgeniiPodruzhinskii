@@ -11,6 +11,8 @@
       <class name="com.epam.tc.hw2.ex2.Exercise2Test"/>
       <class name="com.epam.tc.hw3.ex1.Exercise1Test"/>
       <class name="com.epam.tc.hw3.ex2.Exercise2Test"/>
+      <class name="com.epam.tc.hw4.ex1.Exercise1Test"/>
+      <class name="com.epam.tc.hw4.ex2.Exercise2Test"/>
     </classes>
   </test>
 </suite>
