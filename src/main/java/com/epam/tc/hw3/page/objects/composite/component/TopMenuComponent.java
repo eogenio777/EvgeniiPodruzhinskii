@@ -1,5 +1,6 @@
 package com.epam.tc.hw3.page.objects.composite.component;
 
+import io.qameta.allure.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
@@ -76,12 +77,5 @@ public class TopMenuComponent extends AbstractJdiBaseComponent {
     public void clickDifferentElementsButton() {
         wait.until(ExpectedConditions.visibilityOf(differentElementsButton));
         differentElementsButton.click();
-    }
-
-    public void performLogin(String username, String password) {
-        clickLoginForm();
-        sendKeysName(username);
-        sendKeysPassword(password);
-        clickLoginButton();
     }
 }

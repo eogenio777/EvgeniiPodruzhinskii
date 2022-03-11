@@ -1,10 +1,13 @@
 package com.epam.tc.hw4;
 
+import com.epam.tc.hw3.page.objects.composite.step.ActionStep;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
@@ -16,6 +19,8 @@ public class BaseExerciseTestHW4 {
     protected WebDriver driver;
 
     protected Properties properties;
+
+    protected ActionStep actionStep;
 
     @BeforeClass
     @Description("")
@@ -38,6 +43,8 @@ public class BaseExerciseTestHW4 {
         driver = new ChromeDriver();
         context.setAttribute("driver", driver);
 
+        actionStep = new ActionStep(driver);
+
         // maximize the window
         driver.manage().window().maximize();
     }
@@ -46,5 +53,13 @@ public class BaseExerciseTestHW4 {
     public void tearDown() {
         //close all tabs and processes
         driver.quit();
+    }
+
+    protected void assertItemsTexts(List<String> actualItemsTexts,
+                                 String[] expectedTexts, SoftAssertions softAssertions) {
+
+        for (int i = 0; i < actualItemsTexts.size(); ++i) {
+            softAssertions.assertThat(actualItemsTexts.get(i)).isEqualTo(expectedTexts[i]);
+        }
     }
 }
