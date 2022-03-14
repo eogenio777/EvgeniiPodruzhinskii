@@ -1,4 +1,4 @@
-package com.epam.tc.hw3.page.objects.composite.step;
+package com.epam.tc.hw4.step;
 
 import com.epam.tc.hw3.page.objects.composite.DifferentElementsPage;
 import com.epam.tc.hw3.page.objects.composite.HomePage;

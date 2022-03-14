@@ -1,6 +1,6 @@
 package com.epam.tc.hw4;
 
-import com.epam.tc.hw3.page.objects.composite.step.ActionStep;
+import com.epam.tc.hw4.step.ActionStep;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
 import java.io.FileInputStream;

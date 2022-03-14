@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends AbstractJdiBasePage {
 
-    private final String title;
 
     @FindBy(className = "icons-benefit")
     private List<WebElement> icons;
@@ -20,16 +19,10 @@ public class HomePage extends AbstractJdiBasePage {
     @FindBy(id = "frame")
     private WebElement frame;
 
-    private FrameComponent frameWithButton;
-
     public HomePage(WebDriver driver) {
         super(driver);
-        title = driver.getTitle();
     }
 
-    public String getTitle() {
-        return title;
-    }
 
     public long getIconsCount() {
         return icons.size();

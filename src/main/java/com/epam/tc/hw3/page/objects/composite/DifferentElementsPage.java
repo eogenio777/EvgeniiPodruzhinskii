@@ -2,7 +2,6 @@ package com.epam.tc.hw3.page.objects.composite;
 
 import java.util.List;
 import java.util.Objects;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,14 +15,14 @@ public class DifferentElementsPage extends AbstractJdiBasePage {
     @FindBy(css = "div.checkbox-row label.label-radio")
     private List<WebElement> metalsRadio;
 
-    private final Select colorsSelect;
+    @FindBy(css = "div.colors select.uui-form-element")
+    private WebElement colorsSelect;
 
     @FindBy(css = "ul.logs li")
     private List<WebElement> logs;
 
     public DifferentElementsPage(WebDriver driver) {
         super(driver);
-        colorsSelect = new Select(driver.findElement(By.cssSelector("div.colors select.uui-form-element")));
     }
 
     public void selectCheckBoxes(List<String> thingsToSelect) {
@@ -43,7 +42,8 @@ public class DifferentElementsPage extends AbstractJdiBasePage {
     }
 
     public void selectColor(String color) {
-        colorsSelect.selectByVisibleText(color);
+        Select select = new Select(colorsSelect);
+        select.selectByVisibleText(color);
     }
 
     public boolean areCheckBoxesInLogs(List<String> mustBeSelected) {

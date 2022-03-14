@@ -30,6 +30,7 @@
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     <testng.version>7.4.0</testng.version>
     <testng.configs.path>${project.build.testOutputDirectory}</testng.configs.path>
+    <cucumber.version>7.2.3</cucumber.version>
   </properties>
 
   <dependencies>
@@ -81,6 +82,16 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>${commons-io.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
     </dependency>
   </dependencies>
 
@@ -188,6 +199,12 @@
       <id>hw4</id>
       <properties>
         <testng.suite.file>${testng.configs.path}/hw4TestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>hw5</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/hw5TestNG.xml</testng.suite.file>
       </properties>
     </profile>
   </profiles>

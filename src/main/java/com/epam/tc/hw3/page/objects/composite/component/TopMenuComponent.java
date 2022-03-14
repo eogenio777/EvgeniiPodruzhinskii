@@ -16,6 +16,9 @@ public class TopMenuComponent extends AbstractJdiBaseComponent {
     @FindBy(css = "li.dropdown > a.dropdown-toggle")
     private WebElement serviceDropdown;
 
+    @FindBy(css = "ul.dropdown-menu a[href=\"user-table.html\"]")
+    private WebElement userTableButton;
+
     @FindBy(css = "ul.dropdown-menu a[href=\"different-elements.html\"]")
     private WebElement differentElementsButton;
 
@@ -77,5 +80,10 @@ public class TopMenuComponent extends AbstractJdiBaseComponent {
     public void clickDifferentElementsButton() {
         wait.until(ExpectedConditions.visibilityOf(differentElementsButton));
         differentElementsButton.click();
+    }
+
+    public void clickUserTableButton() {
+        wait.until(ExpectedConditions.visibilityOf(userTableButton));
+        userTableButton.click();
     }
 }
