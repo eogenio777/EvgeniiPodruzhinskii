@@ -1,6 +1,5 @@
 package com.epam.tc.hw3.page.objects.composite.component;
 
-import io.qameta.allure.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;

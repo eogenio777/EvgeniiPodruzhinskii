@@ -20,6 +20,7 @@ public class CucumberHooks {
     @Before
     public void setUp() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         TestContext.getInstance().setObject("driver", driver);
     }
 
