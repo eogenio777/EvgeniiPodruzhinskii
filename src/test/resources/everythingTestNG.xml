@@ -13,6 +13,10 @@
       <class name="com.epam.tc.hw3.ex2.Exercise2Test"/>
       <class name="com.epam.tc.hw4.ex1.Exercise1Test"/>
       <class name="com.epam.tc.hw4.ex2.Exercise2Test"/>
+      <class name="com.epam.tc.hw4.fail.Exercise1FailTest"/>
+      <class name="com.epam.tc.hw5.cucumber.Exercise1Test"/>
+      <class name="com.epam.tc.hw5.cucumber.Exercise2Test"/>
+      <class name="com.epam.tc.hw5.cucumber.Exercise3Test"/>
     </classes>
   </test>
 </suite>
