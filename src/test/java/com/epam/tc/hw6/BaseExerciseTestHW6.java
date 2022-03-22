@@ -40,22 +40,20 @@ public class BaseExerciseTestHW6 {
         // set up the chrome driver
 
         driver = WebDriverProvider.getDriver();
-        context.setAttribute("driver", driver);
-
-        actionStep = new ActionStep(driver);
 
         // maximize the window
         driver.manage().window().maximize();
+        actionStep = new ActionStep(driver);
     }
 
     @AfterMethod
     public void tearDown() {
         //close all tabs and processes
-        driver.quit();
+        WebDriverProvider.closeDriver();
     }
 
     protected void assertItemsTexts(List<String> actualItemsTexts,
-                                 String[] expectedTexts, SoftAssertions softAssertions) {
+                                    String[] expectedTexts, SoftAssertions softAssertions) {
 
         for (int i = 0; i < actualItemsTexts.size(); ++i) {
             softAssertions.assertThat(actualItemsTexts.get(i)).isEqualTo(expectedTexts[i]);

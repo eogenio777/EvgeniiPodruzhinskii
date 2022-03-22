@@ -1,8 +1,8 @@
 package com.epam.tc.hw6.step;
 
-import com.epam.tc.hw3.page.objects.composite.DifferentElementsPage;
-import com.epam.tc.hw3.page.objects.composite.HomePage;
-import com.epam.tc.hw3.page.objects.composite.component.FrameComponent;
+import com.epam.tc.hw6.page.DifferentElementsPage;
+import com.epam.tc.hw6.page.HomePage;
+import com.epam.tc.hw6.page.component.FrameComponent;
 import io.qameta.allure.Step;
 import java.util.List;
 import org.openqa.selenium.WebDriver;

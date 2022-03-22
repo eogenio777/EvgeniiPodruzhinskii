@@ -1,7 +1,7 @@
 package com.epam.tc.hw6.service.webdriver;
 
-import com.epam.tc.hw6.service.exeption.IllegalBrowserNameException;
-import com.epam.tc.hw6.service.exeption.WebDriverLaunchTypeExeption;
+import com.epam.tc.hw6.service.exception.IllegalBrowserNameException;
+import com.epam.tc.hw6.service.exception.WebDriverLaunchTypeException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,7 +30,7 @@ public final class WebDriverFactory {
         } else if (REMOTE_LAUNCH_TYPE.equalsIgnoreCase(launchType)) {
             driver = createRemoteDriver(browser);
         } else {
-            throw new WebDriverLaunchTypeExeption();
+            throw new WebDriverLaunchTypeException();
         }
         return driver;
     }

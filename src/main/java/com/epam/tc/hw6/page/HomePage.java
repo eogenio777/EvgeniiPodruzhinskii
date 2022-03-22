@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends AbstractJdiBasePage {
 
-
     @FindBy(className = "icons-benefit")
     private List<WebElement> icons;
 
@@ -22,14 +21,12 @@ public class HomePage extends AbstractJdiBasePage {
         super(driver);
     }
 
-
     public long getIconsCount() {
         return icons.size();
     }
 
     public boolean areIconsDisplayed() {
-        for (WebElement icon : icons
-        ) {
+        for (WebElement icon : icons) {
             if (!icon.isDisplayed()) {
                 return false;
             }
