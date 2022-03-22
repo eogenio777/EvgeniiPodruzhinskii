@@ -212,6 +212,12 @@
         <testng.suite.file>${testng.configs.path}/hw5TestNG.xml</testng.suite.file>
       </properties>
     </profile>
+    <profile>
+      <id>hw6</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/hw6TestNG.xml</testng.suite.file>
+      </properties>
+    </profile>
   </profiles>
 
   <reporting>
